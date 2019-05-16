@@ -46,7 +46,7 @@ class ConditionalDCGAN():
     images = tfk.layers.Conv2DTranspose(self.img_channels, 5, strides=(f1[0], f2[0]), padding='same', activation='tanh', kernel_initializer='glorot_normal')(tensor)
     
     model = tfk.models.Model(inputs=[noise, label], outputs=images)
-    model.summary()
+    #model.summary()
     
     return model
   
@@ -77,7 +77,7 @@ class ConditionalDCGAN():
     valid = tfk.layers.Dense(1, activation='sigmoid')(tensor)
     
     model = tfk.models.Model(inputs=[img, label], outputs=valid)
-    model.summary()
+    #model.summary()
     
     return model
   
@@ -92,7 +92,7 @@ class ConditionalDCGAN():
     
     return model
   
-  def train(self, x, y, epochs, batch_size=128, save_interval=1000):
+  def train(self, x, y, epochs, batch_size=128):
     half_batch = int(batch_size / 2)
     steps = -(-x.shape[0] // half_batch)
     
